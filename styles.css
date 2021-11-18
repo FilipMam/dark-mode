@@ -1,3 +1,8 @@
+:root {
+    --color-bg: #fff;
+    --color-main: #000;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,17 +10,19 @@
 }
 
 body {
-    background: #fff;
-    color: #000;
-    background: #fff;
-    color: #000;
+    align-items: start;
+    background: var(--color-bg);
+    color: var(--color-main);
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     font-family: Helvetica, sans-serif;
     justify-content: flex-start;
     height: 100vh;
+    margin-top: 10vh;
     overflow: hidden;
     padding: 48px 32px;
+    transition: background-color 0.3s;
     width: 100vw;
 }
 
@@ -23,7 +30,7 @@ header {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: 0 auto 10vh;
     max-width: 1000px;
     width: 100%;
 }
@@ -61,12 +68,13 @@ header button {
     height: 60px;
     margin: 16px 25px;
     position: relative;
+    transition: background-color 0.3s, transform 0.3s;
     width: 60px;
 }
 
 span {
     bottom: 100%;
-    color: #000;
+    color: var(--color-main);
     font-size: 20px;
     left: 50%;
     padding: 12px 0;
@@ -88,11 +96,9 @@ p {
 }
 
 main button {
-    background: #000;
     border: solid 0.3vw;
-    color: #fff;
-    background: #fff;
-    color: #000;
+    background: var(--color-bg);
+    color: var(--color-main);
     cursor: pointer;
     font-family: Helvetica, sans-serif;
     font-size: 32px;
@@ -102,6 +108,69 @@ main button {
 }
 
 main button:hover {
-    background: #000;
-    color: #fff;
+    background: var(--color-main);
+    color: var(--color-bg);
 }
+
+/* LIGHT MODE */
+body.light {
+    --color-bg: #fff;
+    --color-main: #000;
+}
+
+body.light .icon {
+    background: grey;
+    transform: translateX(0);
+}
+
+body.light .icon::after {
+    content: none;
+}
+
+/* DARK MODE */
+
+body.dark {
+    --color-bg: #000;
+    --color-main: #fff;
+}
+
+body.dark .icon {
+    background: yellow;
+    transform: translateX(85px);
+}
+
+body.dark .icon::after {
+    background-color: #000;
+    border-radius: 100%;
+    content: "";
+    display: block;
+    height: 50px;
+    left: -5px;
+    position: absolute;
+    top: 5px;
+    width: 45px;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --color-bg: #000;
+        --color-main: #fff;
+    }
+
+    body .icon {
+        background: yellow;
+        transform: translateX(85px);
+    }
+
+    body .icon::after {
+        background-color: #000;
+        border-radius: 100%;
+        content: "";
+        display: block;
+        height: 50px;
+        left: -5px;
+        position: absolute;
+        top: 5px;
+        width: 45px;
+    }
+} ;
