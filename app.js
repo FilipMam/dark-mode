@@ -6,10 +6,23 @@ switchButton.addEventListener("click", () => {
         document.querySelector("body").classList.remove("dark");
         document.querySelector("body").classList.add("light");
         theme = "light";
-    } else {
+    }
+    else if (theme==='light') {
         document.querySelector("body").classList.remove("light");
         document.querySelector("body").classList.add("dark");
         theme = "dark";
+    }
+    else {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.querySelector("body").classList.remove("dark");
+            document.querySelector("body").classList.add("light");
+            theme = "light";
+        }
+        else {
+            document.querySelector("body").classList.remove("light");
+            document.querySelector("body").classList.add("dark");
+            theme = "dark";
+        }
     }
 
     localStorage.setItem("theme", theme);
